@@ -10,11 +10,6 @@ class Model_Product extends CI_Model
         }
     }
 
-    // public function tampil_data_by_kategori($category)
-    // {
-    //     return $this->db->get_where('tb_product', array('category' => $category));
-    // }
-
     public function tampil_kategori()
     {
         $this->db->distinct();
@@ -67,6 +62,6 @@ class Model_Product extends CI_Model
             UPDATE `tb_product` SET `stock` = `stock` + '$stock' WHERE `id_product` = '$id'
         ";
 
-        $this->db->query($query);
+        return $this->db->query($query);
     }
 }

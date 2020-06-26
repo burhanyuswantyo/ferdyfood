@@ -1,14 +1,6 @@
-<!-- ============================================================== -->
-<!-- Page wrapper  -->
-<!-- ============================================================== -->
 <div class="page-wrapper">
-    <!-- ============================================================== -->
-    <!-- Container fluid  -->
-    <!-- ============================================================== -->
     <div class="container-fluid">
-        <!-- ============================================================== -->
-        <!-- Start Page Content -->
-        <!-- ============================================================== -->
+        <div class="flash-data" data-type="<?= $this->session->flashdata('type'); ?>" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -52,7 +44,7 @@
                                     <?php $i = 1; ?>
                                     <?php foreach ($product as $p) : ?>
                                         <tr>
-                                            <td class="text-center"><?= $i++; ?></td>
+                                            <td class="text-center"><?= $i; ?></td>
                                             <td class="text-center"><img src="<?= base_url() . '/assets/images/uploads/' . $p->image ?>" class="img-fluid" style="width:100px; height:100px;" alt="No Image"></td>
                                             <td><?= $p->name_product ?></td>
                                             <td><?= $p->information ?></td>
@@ -61,7 +53,7 @@
                                             <td class="text-center">
                                                 <a href="" class="btn btn-sm btn-success m-1 updateStockModal" data-toggle="modal" data-target="#stockModal" data-id="<?= $p->id_product ?>">Tambah Stok</a><br>
                                                 <a href="" class="btn btn-sm btn-warning m-1 editProductModal" data-toggle="modal" data-target="#productModal" data-id="<?= $p->id_product ?>"><i class=" fa fa-edit"></i></a>
-                                                <a href="<?= base_url('backend/product/hapus/') . $p->id_product ?>" class="btn btn-sm btn-danger m-1"><i class="fa fa-trash"></i></a>
+                                                <a href="<?= base_url('backend/product/hapus/') . $p->id_product ?>" class="btn btn-sm btn-danger m-1 delete"><i class="fa fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         <?php $i++; ?>
@@ -73,21 +65,7 @@
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End PAge Content -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Right sidebar -->
-        <!-- ============================================================== -->
-        <!-- .right-sidebar -->
-        <!-- ============================================================== -->
-        <!-- End Right sidebar -->
-        <!-- ============================================================== -->
     </div>
-    <!-- ============================================================== -->
-    <!-- End Container fluid  -->
-    <!-- ============================================================== -->
-    <!-- Modal -->
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

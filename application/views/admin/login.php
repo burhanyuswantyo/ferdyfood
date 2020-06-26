@@ -1,8 +1,8 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <!------ Include the above in your HEAD tag ---------->
 <div class="container">
+    <div class="flash-data" data-type="<?= $this->session->flashdata('type'); ?>" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
     <div class="wrapper">
         <form action="<?= base_url('auth/login') ?>" method="post" class="form-signin">
             <h3 class="form-signin-heading">Login</h3>
@@ -11,10 +11,14 @@
             <input type="text" class="form-control" name="username" placeholder="Username" required="">
             <input type="password" class="form-control" name="password" placeholder="Password" required="">
 
-            <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit">Login</button>
+            <button class="btn btn-lg btn-primary btn-block" type="Submit">Login</button>
         </form>
     </div>
 </div>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="<?= base_url() ?>assets/admin/dist/js/sweetalert2.all.min.js"></script>
+<script src="<?= base_url() ?>assets/admin/dist/js/myswal.js"></script>
 
 <style>
     .wrapper {

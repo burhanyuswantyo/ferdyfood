@@ -1,4 +1,7 @@
 <?php
+
+use SebastianBergmann\Environment\Console;
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admin extends CI_Controller
@@ -11,11 +14,30 @@ class Admin extends CI_Controller
 
     public function index()
     {
-        // if (!$this->session->userdata('id')) {
-        //     redirect('auth');
-        // }
 
-        $data['title'] = 'Halaman Admin';
+        $data = [
+            'title' => 'Halaman Admin',
+            'penjualan' => [
+                'harian' => $this->Model_Transaksi->jumlah_transaksi(1, date('Y-m-d'))->row_array(),
+                'bulanan' => $this->Model_Transaksi->jumlah_transaksi(2, date('Y-m-d'))->row_array(),
+                'total' => $this->Model_Transaksi->jumlah_transaksi(null, date('Y-m-d'))->row_array()
+            ],
+            'produk' => [
+                'harian' => $this->Model_Transaksi->produk_terjual(1, date('Y-m-d'))->row_array(),
+                'bulanan' => $this->Model_Transaksi->produk_terjual(2, date('Y-m-d'))->row_array(),
+                'total' => $this->Model_Transaksi->produk_terjual(null, date('Y-m-d'))->row_array()
+            ]
+        ];
+
+        foreach ($this->Model_Transaksi->chart()->result_array() as $t) :
+            $data['tanggal'][] = $t['tanggal'];
+        endforeach;
+        foreach ($this->Model_Transaksi->chart()->result_array() as $t) :
+            $data['total'][] = $t['total'];
+        endforeach;
+
+        // var_dump($data['total']);
+        // die;
 
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/topbar');
@@ -76,6 +98,18 @@ class Admin extends CI_Controller
         $this->load->view('admin/templates/topbar');
         $this->load->view('admin/templates/sidebar');
         $this->load->view('admin/laporan');
+        $this->load->view('admin/templates/footer');
+    }
+
+    public function user()
+    {
+        $data['title'] = 'User';
+        $data['user'] = $this->Model_User->tampil_user()->result();
+
+        $this->load->view('admin/templates/header', $data);
+        $this->load->view('admin/templates/topbar');
+        $this->load->view('admin/templates/sidebar');
+        $this->load->view('admin/user');
         $this->load->view('admin/templates/footer');
     }
 }

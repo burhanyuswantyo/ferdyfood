@@ -38,7 +38,7 @@
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
                     <!-- ============================================================== -->
-                    <a class="btn btn-danger" href="<?= base_url('auth/logout') ?>"><i class="fa fa-power-off"></i></a>
+                    <a class="btn btn-danger logout" href="<?= base_url('auth/logout') ?>"><i class="fa fa-power-off"></i></a>
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
                     <!-- ============================================================== -->

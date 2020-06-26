@@ -44,24 +44,15 @@ class Product extends CI_Controller
             'image'         => $image
         );
         $this->Model_Product->tambah_barang($data, 'tb_product');
+        $this->session->set_flashdata([
+            'type' => 1,
+            'message' => 'Berhasil menambah produk'
+        ]);
         redirect('admin/produk');
-    }
-
-    public function edit($id)
-    {
-        $where = array('id_product' => $id);
-        $data['product'] = $this->Model_Product->edit_product($where, 'tb_product')->result();
-
-        $this->load->view('backend/templates/header');
-        $this->load->view('backend/templates/sidebar');
-        $this->load->view('backend/edit_product', $data);
-        $this->load->view('backend/templates/footer');
     }
 
     public function update()
     {
-        // var_dump($this->input->post('id'));
-        // die;
         $id             = $this->input->post('id');
         $name_product   = $this->input->post('name_product');
         $information    = $this->input->post('information');
@@ -103,6 +94,10 @@ class Product extends CI_Controller
         );
 
         $this->Model_Product->update_data($where, $data, 'tb_product');
+        $this->session->set_flashdata([
+            'type' => 1,
+            'message' => 'Berhasil merubah produk'
+        ]);
         redirect('admin/produk');
     }
 
@@ -112,6 +107,10 @@ class Product extends CI_Controller
         $stock = $this->input->post('stock');
 
         $this->Model_Product->updateStock($stock, $id);
+        $this->session->set_flashdata([
+            'type' => 1,
+            'message' => 'Berhasil menambah stok'
+        ]);
         redirect('admin/produk');
     }
 
@@ -119,6 +118,10 @@ class Product extends CI_Controller
     {
         $where = array('id_product' => $id);
         $this->Model_Product->hapus_data($where, 'tb_product');
+        $this->session->set_flashdata([
+            'type' => 1,
+            'message' => 'Berhasil menghapus produk'
+        ]);
         redirect('admin/produk');
     }
 

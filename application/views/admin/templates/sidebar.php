@@ -12,7 +12,7 @@
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin') ?>" aria-expanded="false"><i class="fa fa-home"></i><span class="hide-menu">Dashboard</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/produk') ?>" aria-expanded="false"><i class="fa fa-th"></i><span class="hide-menu">Produk</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/laporan') ?>" aria-expanded="false"><i class="fa fa-file-alt"></i><span class="hide-menu">Laporan</span></a></li>
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="icon-material.html" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">Icon</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('admin/user') ?>" aria-expanded="false"><i class="mdi mdi-face"></i><span class="hide-menu">User</span></a></li>
             </ul>
 
         </nav>

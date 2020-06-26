@@ -98,42 +98,45 @@ class Model_Transaksi extends CI_Model
         $this->db->insert($table, $data);
     }
 
-    // public function edit_product($where, $table)
-    // {
-    //     return $this->db->get_where($table, $where);
-    // }
+    public function jumlah_transaksi($type, $date)
+    {
+        $query = "SELECT SUM(`total`) AS 'total', COUNT(`total`) AS 'jumlah' FROM `tb_transaksi` ";
+        if ($type == 1) {
+            $query = $query . "WHERE `tanggal` = '$date'";
+        } else if ($type == 2) {
+            $query = $query . "WHERE MONTH(`tanggal`) = MONTH('$date')";
+        } else {
+            $query;
+        }
+        return $this->db->query($query);
+    }
 
-    // public function update_data($where, $data, $table)
-    // {
-    //     $this->db->where($where);
-    //     $this->db->update($table, $data);
-    // }
+    public function produk_terjual($type, $date)
+    {
+        $query = "SELECT COUNT(`tb_detail_transaksi`.`subtotal`) AS 'jumlah' 
+                FROM `tb_detail_transaksi` 
+                JOIN `tb_transaksi`
+                ON `tb_transaksi`.`id_transaksi` = `tb_detail_transaksi`.`transaksi_id` 
+        ";
 
-    // public function hapus_data($where, $table)
-    // {
-    //     $this->db->where($where);
-    //     $this->db->delete($table);
-    // }
+        if ($type == 1) {
+            $query = $query . "WHERE `tb_transaksi`.`tanggal` = '$date'";
+        } else if ($type == 2) {
+            $query = $query . "WHERE MONTH(`tb_transaksi`.`tanggal`) = MONTH('$date')";
+        } else {
+            $query;
+        }
+        return $this->db->query($query);
+    }
 
-    // public function find($id)
-    // {
-    //     $result = $this->db->where('id_product', $id)
-    //         ->limit(1)
-    //         ->get('tb_product');
-    //     if ($result->num_rows() > 0) {
-    //         return $result->row();
-    //     } else {
-    //         return array();
-    //     }
-    // }
+    public function chart()
+    {
+        $date = date('Y-m-d');
 
-    // public function detail_product($id_product)
-    // {
-    //     $result = $this->db->where('id_product', $id_product)->get('tb_product');
-    //     if ($result->num_rows() > 0) {
-    //         return $result->result();
-    //     } else {
-    //         return false;
-    //     }
-    // }
+        $query = "
+            SELECT DAY(`tanggal`) AS 'tanggal', SUM(`total`) AS 'total' FROM `tb_transaksi` WHERE MONTH(`tanggal`) = MONTH('$date') GROUP BY `tanggal`
+        ";
+
+        return $this->db->query($query);
+    }
 }
