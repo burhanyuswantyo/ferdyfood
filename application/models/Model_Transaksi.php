@@ -13,16 +13,16 @@ class Model_Transaksi extends CI_Model
     public function transaksi($type, $x, $y)
     {
         $query = "
-        SELECT
-        `tb_transaksi`.`id_transaksi`, `tb_transaksi`.`tanggal`, `tb_user`.`nama`,
-        `tb_product`.`id_product`, `tb_product`.`name_product`, `tb_detail_transaksi`.`qty`, `tb_product`.`price`, `tb_detail_transaksi`.`subtotal`
-        FROM `tb_user`
-        JOIN `tb_transaksi`
-        ON `tb_user`.`id_user` = `tb_transaksi`.`kasir_id`
-        JOIN `tb_detail_transaksi`
-        ON `tb_detail_transaksi`.`transaksi_id` = `tb_transaksi`.`id_transaksi`
-        JOIN `tb_product`
-        ON `tb_product`.`id_product` = `tb_detail_transaksi`.`produk_id`
+            SELECT
+            `tb_transaksi`.`id_transaksi`, `tb_transaksi`.`tanggal`, `tb_user`.`nama`,
+            `tb_product`.`id_product`, `tb_product`.`name_product`, `tb_detail_transaksi`.`qty`, `tb_product`.`price`, `tb_detail_transaksi`.`subtotal`
+            FROM `tb_user`
+            JOIN `tb_transaksi`
+            ON `tb_user`.`id_user` = `tb_transaksi`.`kasir_id`
+            JOIN `tb_detail_transaksi`
+            ON `tb_detail_transaksi`.`transaksi_id` = `tb_transaksi`.`id_transaksi`
+            JOIN `tb_product`
+            ON `tb_product`.`id_product` = `tb_detail_transaksi`.`produk_id`
         ";
 
         if ($type == 'date') {

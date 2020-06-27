@@ -11,18 +11,6 @@
                             <table width="100%">
                                 <tr>
                                     <td width="80%"><a class="btn btn-success" data-toggle="modal" data-target="#userModal" href=""><i class="fa fa-plus addUserModal"></i> Tambah User</a></td>
-                                    <td align="right">Tampilkan: </td>
-                                    <td>
-                                        <div class="input-group">
-                                            <select class="form-control" name="category" onchange="refresh()">
-                                                <option hidden>Pilih kategori</option>
-                                                <option value="">Semua</option>
-                                                <?php foreach ($category as $c) : ?>
-                                                    <option value="<?= $c->category ?>"><?= $c->category ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </div>
-                                    </td>
                                 </tr>
                             </table>
 

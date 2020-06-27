@@ -8,8 +8,8 @@
             <h3 class="form-signin-heading">Login</h3>
             <hr class="colorgraph"><br>
 
-            <input type="text" class="form-control" name="username" placeholder="Username" required="">
-            <input type="password" class="form-control" name="password" placeholder="Password" required="">
+            <input type="text" class="form-control" name="username" placeholder="Username" required oninvalid="this.setCustomValidity('Username tidak boleh kosong')" oninput="setCustomValidity('')">
+            <input type="password" class="form-control" name="password" placeholder="Password" required required oninvalid="this.setCustomValidity('Password tidak boleh kosong')" oninput="setCustomValidity('')">
 
             <button class="btn btn-lg btn-primary btn-block" type="Submit">Login</button>
         </form>
